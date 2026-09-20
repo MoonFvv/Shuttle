@@ -39,9 +39,10 @@
     </a>
     <nav class="nav-links" aria-label="Primary">
       <a href="#product">Product</a>
-      <a href="#reliability">Reliability</a>
-      <a href="#workflow">Workflow</a>
-      <a href="#features">Features</a>
+      <a href="#verification">Verification</a>
+      <a href="#reliability">Recovery</a>
+      <a href="#queue">Queue</a>
+      <a href="#features">Details</a>
     </nav>
     <a class="btn btn-sm" href="#download">Download</a>
   </div>
@@ -151,28 +152,29 @@
     </div>
   </section>
 
-  <!-- ============================================================ INTRO -->
-  <section class="intro" id="product">
+  <!-- ============================================================ PRODUCT PREMISE -->
+  <section class="premise" id="product">
     <div class="container">
-      <div class="grid">
-        <p class="intro-lead reveal">Shuttle reads your source once, writes to every destination at the same time, and verifies each copy against the original. What you get is a first copy you can trust — and a record that proves it.</p>
-        <p class="intro-note reveal">For DITs, camera assistants and production teams.</p>
+      <div class="rail-caption reveal"><span class="mono">COPY</span><i></i><span class="mono">VERIFY</span><i></i><span class="mono">COMPLETE</span></div>
+      <div class="premise-grid">
+        <p class="premise-lead reveal">A first copy is either known good, or it is unfinished.</p>
+        <p class="premise-copy reveal">Shuttle keeps the workflow narrow: one source, multiple destinations, verification after write, and a record you can return to later.</p>
       </div>
     </div>
   </section>
 
-  <!-- ============================================================ STORY 1 -->
-  <section class="story">
+  <!-- ============================================================ CORE WORKFLOW -->
+  <section class="story story-workflow" id="workflow">
     <div class="container">
       <div class="story-head reveal">
-        <span class="eyebrow">01 · Architecture</span>
+        <span class="eyebrow">01 · Core workflow</span>
         <div class="grid">
           <h2 class="story-h">Read once.<br>Write everywhere.</h2>
-          <p class="story-body">Shuttle reads each file from the source exactly once and streams it to every destination at the same time. Adding a second or third copy doesn’t mean another pass over the card — it means another drive receiving the same read. Every destination is tracked and verified on its own.</p>
+          <p class="story-body">Shuttle reads media once and distributes it to every destination in the same pass. Each copy has its own progress, state and verification record.</p>
         </div>
       </div>
 
-      <div class="fanout panel reveal" id="fanout" role="img" aria-label="Diagram: one read from card A004 fans out to three destinations, RAID_01, RAID_02 and SHUTTLE_A, each with independent progress.">
+      <div class="fanout panel reveal" id="fanout" role="img" aria-label="A single source read from A004 quietly fans out to RAID_01, RAID_02 and SHUTTLE_A.">
         <span class="eyebrow fan-label fan-label-src">Source</span>
         <span class="eyebrow fan-label fan-label-dst">Destinations</span>
         <div class="fan-source">
@@ -184,7 +186,7 @@
         </div>
         <svg class="fan-lines" viewBox="0 0 400 300" preserveAspectRatio="none" aria-hidden="true">
           <path class="fan-trunk" d="M0 150 H120"/>
-          <circle class="fan-origin" cx="0" cy="150" r="3"/>
+          <circle class="fan-origin" cx="0" cy="150" r="2.5"/>
           <path class="fan-branch" data-branch="0" d="M120 150 C 220 150, 220 50, 400 50"/>
           <path class="fan-branch" data-branch="1" d="M120 150 H400"/>
           <path class="fan-branch" data-branch="2" d="M120 150 C 220 150, 220 250, 400 250"/>
@@ -193,224 +195,127 @@
           <path class="fan-flow" d="M0 150 H120 C 220 150, 220 250, 400 250"/>
         </svg>
         <div class="fan-dests">
-          <div class="fan-dest" data-fan="0">
-            <div class="fan-dest-row"><svg class="dest-ico"><use href="#i-drive"/></svg><span class="fan-dest-name">RAID_01</span><span class="mono fan-dest-pct">62%</span></div>
-            <div class="bar"><i style="width:62%"></i></div>
-          </div>
-          <div class="fan-dest" data-fan="1">
-            <div class="fan-dest-row"><svg class="dest-ico"><use href="#i-drive"/></svg><span class="fan-dest-name">RAID_02</span><span class="mono fan-dest-pct">61%</span></div>
-            <div class="bar"><i style="width:61.7%"></i></div>
-          </div>
-          <div class="fan-dest" data-fan="2">
-            <div class="fan-dest-row"><svg class="dest-ico"><use href="#i-drive"/></svg><span class="fan-dest-name">SHUTTLE_A</span><span class="mono fan-dest-pct">60%</span></div>
-            <div class="bar"><i style="width:60.9%"></i></div>
-          </div>
+          <div class="fan-dest" data-fan="0"><div class="fan-dest-row"><svg class="dest-ico"><use href="#i-drive"/></svg><span class="fan-dest-name">RAID_01</span><span class="mono fan-dest-pct">62%</span></div><div class="bar"><i style="width:62%"></i></div></div>
+          <div class="fan-dest" data-fan="1"><div class="fan-dest-row"><svg class="dest-ico"><use href="#i-drive"/></svg><span class="fan-dest-name">RAID_02</span><span class="mono fan-dest-pct">61%</span></div><div class="bar"><i style="width:61.7%"></i></div></div>
+          <div class="fan-dest" data-fan="2"><div class="fan-dest-row"><svg class="dest-ico"><use href="#i-drive"/></svg><span class="fan-dest-name">SHUTTLE_A</span><span class="mono fan-dest-pct">60%</span></div><div class="bar"><i style="width:60.9%"></i></div></div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ============================================================ STORY 2 -->
-  <section class="story">
+  <!-- ============================================================ VERIFICATION -->
+  <section class="story story-verify" id="verification">
     <div class="container">
       <div class="story-head reveal">
         <span class="eyebrow">02 · Verification</span>
         <div class="grid">
           <h2 class="story-h">Verify everything.</h2>
           <div class="story-body">
-            <p>After the write completes, Shuttle reads every file back from each destination and compares it with the hash computed during the source read. Mismatches are reported by file and by destination. Nothing is sampled, and nothing is marked complete until it has been checked.</p>
-            <p class="story-spec mono">XXH3 by default · MD5 and SHA-256 when required</p>
+            <p>Copying is only the first half. Shuttle reads files back from each destination and checks them against the source record before the job is marked complete.</p>
+            <p class="story-spec mono">Copying · Verifying · Complete</p>
           </div>
         </div>
       </div>
 
-      <div class="grid">
-        <div class="verify-wrap reveal">
-          <div class="panel verify" id="verify" role="img" aria-label="Shuttle verification report listing clips with source hashes and matching results on three destinations.">
-            <div class="panel-bar">
-              <span class="panel-title">Verification · A004</span>
-              <span class="mono panel-meta">XXH3 · Full</span>
-            </div>
-            <div class="vt">
-              <div class="vt-row vt-head">
-                <span>File</span><span class="right">Size</span><span>Source</span><span class="center">RAID_01</span><span class="center">RAID_02</span><span class="center">SHUTTLE_A</span>
-              </div>
-              <div class="vt-row" data-vrow><span class="vt-file">A004C001_260920_R1ZG.mxf</span><span class="mono right">4.21 GB</span><span class="mono vt-hash">7f3c9a1e04b8d2c6</span><span class="vt-m"><svg><use href="#i-check"/></svg></span><span class="vt-m"><svg><use href="#i-check"/></svg></span><span class="vt-m"><svg><use href="#i-check"/></svg></span></div>
-              <div class="vt-row" data-vrow><span class="vt-file">A004C002_260920_R1ZG.mxf</span><span class="mono right">8.96 GB</span><span class="mono vt-hash">c41d07e9b2a6f318</span><span class="vt-m"><svg><use href="#i-check"/></svg></span><span class="vt-m"><svg><use href="#i-check"/></svg></span><span class="vt-m"><svg><use href="#i-check"/></svg></span></div>
-              <div class="vt-row" data-vrow><span class="vt-file">A004C003_260920_R1ZG.mxf</span><span class="mono right">1.02 GB</span><span class="mono vt-hash">2e8ab5f0d9c17346</span><span class="vt-m"><svg><use href="#i-check"/></svg></span><span class="vt-m"><svg><use href="#i-check"/></svg></span><span class="vt-m"><svg><use href="#i-check"/></svg></span></div>
-              <div class="vt-row" data-vrow><span class="vt-file">A004C004_260920_R1ZG.mxf</span><span class="mono right">12.48 GB</span><span class="mono vt-hash">9b60f2c4e17a53d8</span><span class="vt-m"><svg><use href="#i-check"/></svg></span><span class="vt-m"><svg><use href="#i-check"/></svg></span><span class="vt-m"><svg><use href="#i-check"/></svg></span></div>
-              <div class="vt-row" data-vrow><span class="vt-file">A004C005_260920_R1ZG.mxf</span><span class="mono right">6.33 GB</span><span class="mono vt-hash">d5a1739ce04b6f82</span><span class="vt-m"><svg><use href="#i-check"/></svg></span><span class="vt-m"><svg><use href="#i-check"/></svg></span><span class="vt-m"><svg><use href="#i-check"/></svg></span></div>
-              <div class="vt-row" data-vrow><span class="vt-file">A004C006_260920_R1ZG.mxf</span><span class="mono right">3.87 GB</span><span class="mono vt-hash">4c92e6b81fa0d537</span><span class="vt-m"><svg><use href="#i-check"/></svg></span><span class="vt-m"><svg><use href="#i-check"/></svg></span><span class="vt-m"><svg><use href="#i-check"/></svg></span></div>
-              <div class="vt-row" data-vrow><span class="vt-file">A004C007_260920_R1ZG.mxf</span><span class="mono right">9.14 GB</span><span class="mono vt-hash">a07fd3e5c8b12964</span><span class="vt-m"><svg><use href="#i-check"/></svg></span><span class="vt-m"><svg><use href="#i-check"/></svg></span><span class="vt-m"><svg><use href="#i-check"/></svg></span></div>
-              <div class="vt-row" data-vrow><span class="vt-file">A004C008_260920_R1ZG.mxf</span><span class="mono right">2.76 GB</span><span class="mono vt-hash">e3b84a2f61d0c795</span><span class="vt-m"><svg><use href="#i-check"/></svg></span><span class="vt-m"><svg><use href="#i-check"/></svg></span><span class="vt-m"><svg><use href="#i-check"/></svg></span></div>
-            </div>
-            <div class="panel-foot">
-              <span><span class="mono" data-role="vcount">1,284</span> of 1,284 files verified</span>
-              <span class="mono dim">0 mismatches · 00:06:04</span>
-            </div>
+      <div class="verify-layout reveal">
+        <div class="state-rail" aria-hidden="true">
+          <span class="is-current mono" data-vphase="copying">Copying</span><i></i><span class="mono" data-vphase="verifying">Verifying</span><i></i><span class="mono" data-vphase="complete">Complete</span>
+        </div>
+        <div class="panel verify" id="verify" role="img" aria-label="Shuttle verification report showing files checked on three destinations.">
+          <div class="panel-bar"><span class="panel-title">Verification · A004</span><span class="mono panel-meta">XXH3 · Full</span></div>
+          <div class="vt">
+            <div class="vt-row vt-head"><span>File</span><span class="right">Size</span><span>Source</span><span class="center">RAID_01</span><span class="center">RAID_02</span><span class="center">SHUTTLE_A</span></div>
+            <div class="vt-row" data-vrow><span class="vt-file">A004C001_260920_R1ZG.mxf</span><span class="mono right">4.21 GB</span><span class="mono vt-hash">7f3c9a1e</span><span class="vt-m"><svg><use href="#i-check"/></svg></span><span class="vt-m"><svg><use href="#i-check"/></svg></span><span class="vt-m"><svg><use href="#i-check"/></svg></span></div>
+            <div class="vt-row" data-vrow><span class="vt-file">A004C002_260920_R1ZG.mxf</span><span class="mono right">8.96 GB</span><span class="mono vt-hash">c41d07e9</span><span class="vt-m"><svg><use href="#i-check"/></svg></span><span class="vt-m"><svg><use href="#i-check"/></svg></span><span class="vt-m"><svg><use href="#i-check"/></svg></span></div>
+            <div class="vt-row" data-vrow><span class="vt-file">A004C003_260920_R1ZG.mxf</span><span class="mono right">1.02 GB</span><span class="mono vt-hash">2e8ab5f0</span><span class="vt-m"><svg><use href="#i-check"/></svg></span><span class="vt-m"><svg><use href="#i-check"/></svg></span><span class="vt-m"><svg><use href="#i-check"/></svg></span></div>
+            <div class="vt-row" data-vrow><span class="vt-file">A004C004_260920_R1ZG.mxf</span><span class="mono right">12.48 GB</span><span class="mono vt-hash">9b60f2c4</span><span class="vt-m"><svg><use href="#i-check"/></svg></span><span class="vt-m"><svg><use href="#i-check"/></svg></span><span class="vt-m"><svg><use href="#i-check"/></svg></span></div>
+            <div class="vt-row" data-vrow><span class="vt-file">A004C005_260920_R1ZG.mxf</span><span class="mono right">6.33 GB</span><span class="mono vt-hash">d5a1739c</span><span class="vt-m"><svg><use href="#i-check"/></svg></span><span class="vt-m"><svg><use href="#i-check"/></svg></span><span class="vt-m"><svg><use href="#i-check"/></svg></span></div>
+            <div class="vt-row" data-vrow><span class="vt-file">A004C006_260920_R1ZG.mxf</span><span class="mono right">3.87 GB</span><span class="mono vt-hash">4c92e6b8</span><span class="vt-m"><svg><use href="#i-check"/></svg></span><span class="vt-m"><svg><use href="#i-check"/></svg></span><span class="vt-m"><svg><use href="#i-check"/></svg></span></div>
           </div>
+          <div class="panel-foot"><span><span class="mono" data-role="vcount">1,284</span> of 1,284 files verified</span><span class="mono dim">0 mismatches · 00:06:04</span></div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ============================================================ STORY 3 -->
-  <section class="story">
+  <!-- ============================================================ RECOVERY -->
+  <section class="recovery" id="reliability">
     <div class="container">
-      <div class="story-head reveal">
+      <div class="grid recovery-head reveal">
         <span class="eyebrow">03 · Recovery</span>
-        <div class="grid">
-          <h2 class="story-h">Resume without starting&nbsp;over.</h2>
-          <p class="story-body">Shuttle records durable checkpoints as it works. If a drive is unplugged, a disk fills up or the app is quit mid-transfer, nothing that was verified is lost. Reconnect, reopen, and Shuttle continues from the last good file — after confirming the source hasn’t changed underneath it.</p>
-        </div>
+        <h2>Built around failure,<br>not just success.</h2>
+        <p>Drives disconnect. Transfers stop. Systems restart. Shuttle keeps verified progress intact, isolates destination failures and resumes from the last safe point.</p>
       </div>
-
-      <div class="grid">
-        <div class="resume-wrap reveal">
-          <div class="panel resume has-mark" id="resume" role="img" aria-label="Shuttle resuming a transfer to SHUTTLE_A from a checkpoint at 58 percent after the drive was disconnected.">
-            <div class="panel-bar">
-              <span class="panel-title">SHUTTLE_A · A004</span>
-              <span class="state" data-role="rstate" data-state="verified"><span class="state-dot"></span><span class="mono" data-role="rstate-label">Verified</span></span>
-            </div>
-            <div class="resume-track">
-              <div class="bar bar-lg">
-                <i class="resume-fill is-ok" data-role="rfill" style="width:100%"></i>
-                <b class="resume-mark" data-role="rmark" style="left:58%"></b>
-              </div>
-              <div class="resume-scale mono"><span>0</span><span class="resume-cp" data-role="rcp">Checkpoint · 742 files verified</span><span>100%</span></div>
-            </div>
-            <ol class="log" data-role="rlog">
-              <li><span class="mono log-t">14:31:52</span><span class="log-e">Checkpoint saved</span><span class="mono log-d">742 files verified</span></li>
-              <li><span class="mono log-t">14:32:07</span><span class="log-e"><svg class="log-warn"><use href="#i-warn"/></svg>SHUTTLE_A disconnected</span><span class="mono log-d">Transfer paused</span></li>
-              <li><span class="mono log-t">14:33:41</span><span class="log-e">SHUTTLE_A reconnected</span><span class="mono log-d">Source unchanged</span></li>
-              <li><span class="mono log-t">14:33:42</span><span class="log-e">Resumed from checkpoint</span><span class="mono log-d">542 files remaining</span></li>
-            </ol>
-          </div>
+      <div class="recovery-system reveal">
+        <div class="panel isolate is-warn" id="isolate" role="img" aria-label="Two destinations continue copying while SHUTTLE_A waits to reconnect.">
+          <div class="panel-bar"><span class="panel-title">Destinations</span><span class="mono panel-meta">3</span></div>
+          <div class="dest" data-iso="0"><div class="dest-id"><svg class="dest-ico"><use href="#i-drive"/></svg><span class="dest-name">RAID_01</span></div><div class="dest-bar bar"><i data-role="bar" style="width:71%"></i></div><div class="dest-readout mono"><span data-role="pct">71%</span><span class="dest-state" data-role="state">Copying</span></div></div>
+          <div class="dest" data-iso="1"><div class="dest-id"><svg class="dest-ico"><use href="#i-drive"/></svg><span class="dest-name">RAID_02</span></div><div class="dest-bar bar"><i data-role="bar" style="width:70.6%"></i></div><div class="dest-readout mono"><span data-role="pct">70%</span><span class="dest-state" data-role="state">Copying</span></div></div>
+          <div class="dest is-waiting" data-iso="2"><div class="dest-id"><svg class="dest-ico"><use href="#i-drive"/></svg><span class="dest-name">SHUTTLE_A</span></div><div class="dest-bar bar"><i data-role="bar" style="width:47%"></i></div><div class="dest-readout mono"><span data-role="pct">47%</span><span class="dest-state" data-role="state">Waiting</span></div></div>
+          <div class="notice" data-role="notice"><svg class="notice-ico"><use href="#i-warn"/></svg><span>SHUTTLE_A disconnected. Verified progress stays saved. Other destinations continue.</span></div>
+        </div>
+        <div class="recovery-rail" aria-hidden="true"><i></i><span class="mono">checkpoint</span><i></i></div>
+        <div class="panel resume has-mark" id="resume" role="img" aria-label="Shuttle resuming from a checkpoint at 58 percent after the drive reconnects.">
+          <div class="panel-bar"><span class="panel-title">SHUTTLE_A · A004</span><span class="state" data-role="rstate" data-state="verified"><span class="state-dot"></span><span class="mono" data-role="rstate-label">Verified</span></span></div>
+          <div class="resume-track"><div class="bar bar-lg"><i class="resume-fill is-ok" data-role="rfill" style="width:100%"></i><b class="resume-mark" data-role="rmark" style="left:58%"></b></div><div class="resume-scale mono"><span>0</span><span class="resume-cp" data-role="rcp">Checkpoint · 742 files verified</span><span>100%</span></div></div>
+          <ol class="log" data-role="rlog">
+            <li><span class="mono log-t">14:31:52</span><span class="log-e">Checkpoint saved</span><span class="mono log-d">742 files verified</span></li>
+            <li><span class="mono log-t">14:32:07</span><span class="log-e"><svg class="log-warn"><use href="#i-warn"/></svg>Destination disconnected</span><span class="mono log-d">Paused</span></li>
+            <li><span class="mono log-t">14:33:41</span><span class="log-e">Connection restored</span><span class="mono log-d">Source unchanged</span></li>
+            <li><span class="mono log-t">14:33:42</span><span class="log-e">Resumed from checkpoint</span><span class="mono log-d">542 files left</span></li>
+          </ol>
         </div>
       </div>
     </div>
   </section>
 
   <!-- ============================================================ PERFORMANCE -->
-  <section class="perf" id="performance">
+  <section class="perf light" id="performance">
     <div class="container">
-      <div class="grid">
-        <span class="eyebrow perf-eyebrow reveal">Performance</span>
+      <div class="grid perf-intro reveal">
+        <span class="eyebrow">04 · Performance</span>
+        <p>Example interface data, not a universal guarantee. Actual speed depends on reader, media and destination hardware.</p>
       </div>
-      <div class="grid perf-row">
-        <div class="stat reveal"><span class="stat-v mono">812<small>MB/s</small></span><span class="stat-k">Sustained source read</span></div>
-        <div class="stat reveal"><span class="stat-v mono">3</span><span class="stat-k">Destinations from a single read</span></div>
-        <div class="stat reveal"><span class="stat-v mono">100<small>%</small></span><span class="stat-k">Files verified after write</span></div>
-      </div>
-      <div class="grid">
-        <p class="perf-note reveal">Throughput depends on your reader, media and destinations. Shuttle is built so the source stays the bottleneck — not the software.</p>
+      <div class="perf-row">
+        <div class="stat reveal"><span class="stat-v mono">812<small>MB/s</small></span><span class="stat-k">Demo source read</span></div>
+        <div class="stat reveal"><span class="stat-v mono">3</span><span class="stat-k">Destinations from one source pass</span></div>
+        <div class="stat reveal"><span class="stat-v mono">Full</span><span class="stat-k">Verification after write</span></div>
       </div>
     </div>
   </section>
 
-  <!-- ============================================================ RELIABILITY -->
-  <section class="rel" id="reliability">
+  <!-- ============================================================ QUEUE / HISTORY -->
+  <section class="queue" id="queue">
     <div class="container">
-      <div class="grid rel-head">
-        <div class="rel-title reveal">
-          <span class="eyebrow">Reliability</span>
-          <h2>Built around failure,<br>not just success.</h2>
-          <p>Real sets aren’t ideal conditions. Drives get unplugged, disks fill up, transfers get interrupted, and sometimes the app has to restart. Shuttle is designed so none of it costs you footage — or the time you’ve already spent.</p>
-        </div>
-        <div class="rel-visual reveal">
-          <div class="panel isolate is-warn" id="isolate" role="img" aria-label="Three destinations: RAID_01 and RAID_02 continue copying while SHUTTLE_A waits for its volume to reconnect.">
-            <div class="panel-bar"><span class="panel-title">Destinations</span><span class="mono panel-meta">3</span></div>
-            <div class="dest" data-iso="0">
-              <div class="dest-id"><svg class="dest-ico"><use href="#i-drive"/></svg><span class="dest-name">RAID_01</span></div>
-              <div class="dest-bar bar"><i data-role="bar" style="width:71%"></i></div>
-              <div class="dest-readout mono"><span data-role="pct">71%</span><span class="dest-state" data-role="state">Copying</span></div>
-            </div>
-            <div class="dest" data-iso="1">
-              <div class="dest-id"><svg class="dest-ico"><use href="#i-drive"/></svg><span class="dest-name">RAID_02</span></div>
-              <div class="dest-bar bar"><i data-role="bar" style="width:70.6%"></i></div>
-              <div class="dest-readout mono"><span data-role="pct">70%</span><span class="dest-state" data-role="state">Copying</span></div>
-            </div>
-            <div class="dest is-waiting" data-iso="2">
-              <div class="dest-id"><svg class="dest-ico"><use href="#i-drive"/></svg><span class="dest-name">SHUTTLE_A</span></div>
-              <div class="dest-bar bar"><i data-role="bar" style="width:47%"></i></div>
-              <div class="dest-readout mono"><span data-role="pct">47%</span><span class="dest-state" data-role="state">Waiting</span></div>
-            </div>
-            <div class="notice" data-role="notice">
-              <svg class="notice-ico"><use href="#i-warn"/></svg>
-              <span>SHUTTLE_A was disconnected. Verified progress is preserved — reconnect the volume to resume. Other destinations are unaffected.</span>
-            </div>
-          </div>
-        </div>
+      <div class="grid queue-head reveal">
+        <span class="eyebrow">05 · Queue / History</span>
+        <h2>More than a copy button.</h2>
+        <p>Line up cards, keep a persistent record, and return to any transfer when something needs to be checked again.</p>
       </div>
-
-      <div class="ledger reveal">
-        <div class="ledger-head">
-          <span class="eyebrow">What happens</span>
-          <span class="eyebrow">What Shuttle does</span>
-        </div>
-        <div class="ledger-row">
-          <h3>A drive is unplugged mid-transfer</h3>
-          <p>That destination pauses. The others keep writing. When the drive returns, Shuttle resumes it from the last checkpoint instead of starting again.</p>
-        </div>
-        <div class="ledger-row">
-          <h3>A destination fills up</h3>
-          <p>The transfer continues to the remaining destinations. The full one is reported with exactly which files are missing, so it can be finished elsewhere.</p>
-        </div>
-        <div class="ledger-row">
-          <h3>The transfer is interrupted, or the app restarts</h3>
-          <p>Progress is saved continuously in durable checkpoints. Reopen Shuttle and continue where it stopped. Verified files are never copied twice.</p>
-        </div>
-        <div class="ledger-row">
-          <h3>The source changes</h3>
-          <p>Before resuming, Shuttle checks that the media is the same media. If the card was modified or swapped, it says so rather than picking up against the wrong files.</p>
-        </div>
-        <div class="ledger-row">
-          <h3>Destination data is damaged later</h3>
-          <p>Any past transfer can be re-verified from History. Mismatches are listed file by file, with the original hashes to compare against.</p>
-        </div>
+      <div class="queue-panel reveal" role="img" aria-label="Shuttle queue and history list with one active transfer, two waiting jobs and a completed record.">
+        <div class="queue-row is-active"><span class="mono q-index">01</span><strong>A004</strong><span>Active transfer</span><i></i><span class="mono">62%</span></div>
+        <div class="queue-row"><span class="mono q-index">02</span><strong>A005</strong><span>Waiting in queue</span><i></i><span class="mono">Queued</span></div>
+        <div class="queue-row"><span class="mono q-index">03</span><strong>A006</strong><span>Waiting in queue</span><i></i><span class="mono">Queued</span></div>
+        <div class="queue-row is-done"><span class="mono q-index">History</span><strong>A003</strong><span>Verified on 3 destinations</span><i></i><span class="mono">Report ready</span></div>
       </div>
-
-      <p class="rel-pull reveal">A failure on one destination never touches the others.</p>
     </div>
   </section>
 
-  <!-- ============================================================ WORKFLOW -->
-  <section class="wf" id="workflow">
-    <div class="container">
-      <div class="grid">
-        <div class="wf-title reveal">
-          <span class="eyebrow">Workflow</span>
-          <h2>Four steps, start to finish.</h2>
-        </div>
-      </div>
-      <div class="wf-track" aria-hidden="true"><i id="wf-fill"></i></div>
-      <ol class="wf-steps" id="wf-steps">
-        <li class="wf-step"><span class="wf-num mono">01</span><h3>Select source</h3><p>Insert a card or choose a folder.</p></li>
-        <li class="wf-step"><span class="wf-num mono">02</span><h3>Add destinations</h3><p>One drive or several. Shuttle writes to all of them at once.</p></li>
-        <li class="wf-step"><span class="wf-num mono">03</span><h3>Choose verification</h3><p>Full verification by default. Adjust it per job.</p></li>
-        <li class="wf-step"><span class="wf-num mono">04</span><h3>Transfer</h3><p>Watch it run, or queue the next card and walk away.</p></li>
-      </ol>
-    </div>
-  </section>
-
-  <!-- ============================================================ FEATURES -->
+  <!-- ============================================================ PROFESSIONAL DETAILS -->
   <section class="feat" id="features">
     <div class="container">
-      <div class="grid feat-head">
-        <div class="feat-title reveal">
-          <span class="eyebrow">Professional features</span>
-          <h2>Everything else a professional offload needs.</h2>
-        </div>
+      <div class="grid feat-head reveal">
+        <span class="eyebrow">06 · Professional details</span>
+        <h2>Precise where it matters.</h2>
       </div>
       <dl class="feat-list reveal">
-        <div class="feat-item"><dt>Multi-destination offload</dt><dd>Copy to as many destinations as you connect, from one read of the source.</dd></div>
-        <div class="feat-item"><dt>Transfer queue</dt><dd>Line up cards and let them run back to back, unattended.</dd></div>
-        <div class="feat-item"><dt>Full verification</dt><dd>Every file is read back from each destination and compared with the source.</dd></div>
-        <div class="feat-item"><dt>History</dt><dd>Every transfer is kept and searchable by card, volume, date and status.</dd></div>
-        <div class="feat-item"><dt>Source hash verification</dt><dd>Optionally re-read the source to confirm the original media itself was read correctly.</dd></div>
-        <div class="feat-item"><dt>Detailed reports</dt><dd>Per-file hashes, sizes and timing for every destination, ready to hand off.</dd></div>
-        <div class="feat-item"><dt>Recovery and resume</dt><dd>Interrupted transfers continue from their last checkpoint, never from zero.</dd></div>
-        <div class="feat-item"><dt>Native macOS performance</dt><dd>A native Swift app, tuned for Apple silicon and fast storage.</dd></div>
+        <div class="feat-item"><dt>Multi-destination offload</dt><dd>Copy to connected destinations from one source pass.</dd></div>
+        <div class="feat-item"><dt>Full verification</dt><dd>Read back every file after writing and compare it with the source record.</dd></div>
+        <div class="feat-item"><dt>Recovery &amp; resume</dt><dd>Preserve verified progress and continue after interruption.</dd></div>
+        <div class="feat-item"><dt>Transfer queue</dt><dd>Prepare the next cards without crowding the active job.</dd></div>
+        <div class="feat-item"><dt>Persistent history</dt><dd>Keep completed transfers available for review and re-verification.</dd></div>
+        <div class="feat-item"><dt>Native macOS performance</dt><dd>Designed to feel at home on macOS and fast storage.</dd></div>
+        <div class="feat-item"><dt>Detailed transfer records</dt><dd>Per-destination status, timing, verification and reports.</dd></div>
       </dl>
     </div>
   </section>
@@ -428,9 +333,9 @@
           <path d="M38 48h20" stroke="#F4F2ED" stroke-width="3.5" stroke-linecap="round"/>
           <circle cx="66" cy="48" r="8.5" fill="#F4F2ED"/>
         </svg>
-        <h2>Your footage deserves a better first copy.</h2>
+        <h2>Your footage deserves <br>a better first copy.</h2>
         <a class="btn btn-lg" href="#top">Download Shuttle</a>
-        <p class="cta-note">Built for macOS.</p>
+        <p class="cta-note">Built for fast, verified offloads on macOS.</p>
       </div>
     </div>
   </section>

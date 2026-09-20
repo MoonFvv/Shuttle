@@ -257,15 +257,20 @@
   if (verify) {
     const rows = $$("[data-vrow]", verify);
     const count = $('[data-role="vcount"]', verify);
+    const phases = $$('[data-vphase]');
     const base = 1276;
+    const setVPhase = (name) => phases.forEach((p) => p.classList.toggle("is-current", p.dataset.vphase === name));
     if (!reduceMotion && count) count.textContent = base.toLocaleString("en-US");
     once(verify, () => {
+      setVPhase("copying");
+      setTimeout(() => setVPhase("verifying"), 520);
       rows.forEach((row, i) => {
         setTimeout(() => {
           row.classList.add("is-verified");
           if (count) count.textContent = (base + i + 1).toLocaleString("en-US");
-        }, 500 + i * 260);
+        }, 760 + i * 260);
       });
+      setTimeout(() => setVPhase("complete"), 760 + rows.length * 260 + 320);
     }, 0.45);
   }
 

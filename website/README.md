@@ -6,9 +6,9 @@ offloading application.
 ```
 website/
 ├── index.html        # the homepage (hero → final CTA)
-├── css/site.css      # design tokens, typography, layout, sections, motion
-├── css/app.css       # the Shuttle app UI, rendered in HTML for crisp product imagery
-├── js/site.js        # progressive enhancement: reveals, transfer simulation, scroll-linked workflow line
+├── css/site.css      # Precision Canvas layout, type, sections, Transfer Rail motif
+├── css/app.css       # the Shuttle macOS-style product UI, rendered in HTML
+├── js/site.js        # progressive enhancement: reveals and product-state simulations
 ├── fonts/            # self-hosted Inter Variable + Geist Mono Variable (SIL OFL 1.1)
 └── assets/           # favicon
 ```
@@ -25,22 +25,27 @@ python3 -m http.server 8080
 
 ## Design notes
 
-- **Colour**: `#080808` background, `#0D0D0D` surfaces, `#F4F2ED` / `#8E8E8E` text,
-  hairline borders at 5–14% white. The macOS system blue (`#0A84FF`) is reserved for
-  product state (progress, active indicators) and the workflow progress line.
-- **Type**: Inter Variable with optical sizing (Inter Display cuts kick in on large
-  headlines). Geist Mono is used only for technical values — throughput, hashes,
-  timecodes, states.
-- **Product imagery** is real HTML/CSS rather than bitmaps, so it stays sharp on every
-  display and can change state on the page: the hero window plays a transfer from
-  Copying → Verifying → Complete with numbers that agree with each other (the clock
-  follows the bytes).
-- **Motion** is functional and one-shot (nothing loops except the pulse on an active
-  state dot and the read stream in the architecture diagram). Everything respects
+The site is built around **Precision Canvas**: large quiet spaces, strong type,
+minimal surfaces, hairline separators and the product UI as the main visual object.
+The only recurring motif is a subtle **Transfer Rail** — thin lines and measured
+motion that imply source → destinations, copy → verify → complete, and checkpointed
+recovery without becoming a flowchart.
+
+- **Colour**: `#050505` background, near-black product surfaces, `#F3F1EC` text,
+  `#8C8C8C` secondary text, neutral hairlines. A single warm off-white performance
+  section (`#F3F1EB`) creates rhythm without alternating sections.
+- **Accent**: macOS-like blue (`#0A84FF`) appears only as product state and rail
+  progress. No large accent gradients or glowing borders.
+- **Type**: Inter Variable for the site and UI; Geist Mono only for technical values,
+  status labels, bytes, time and verification details.
+- **Product imagery**: the Shuttle interface is drawn in HTML/CSS rather than bitmaps,
+  so it stays sharp and can animate through Copying → Verifying → Complete, one-read
+  fan-out, destination isolation and checkpoint resume.
+- **Motion**: restrained, product-driven and one-shot. The page respects
   `prefers-reduced-motion` and renders a complete static state with JavaScript disabled.
 
 ## Placeholders to confirm before launch
 
 - Download links (`#download`) — point at the DMG / App Store listing.
-- Supported hash algorithms line ("XXH3 by default · MD5 and SHA-256 when required").
+- Hash algorithm line (`XXH3 · Full`) and verification terminology.
 - Footer links (Release notes, Support, Privacy).
